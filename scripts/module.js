@@ -108,7 +108,7 @@ function createReminder(reminderList) {
         <td>@UUID[${r.source}]</td>
       </tr>`)
         ChatMessage.create({
-            content: `<h4>Action Reminder</h4>
+            content: `<h4>Free Action Reminder</h4>
             <table>
             <thead>
                 <tr>
