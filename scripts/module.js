@@ -30,21 +30,35 @@ function checkActorForReminders(actor, reason, config = {}) {
     const exploration = actor.system?.exploration?.map(e => actor.items.get(e).slug);
     switch (reason) {
         case "startCombat":
-            //Gunslinger: Ten Paces
-            if (slugs.includes("ten-paces")) {
+            //Battle Cry
+            if (slugs.includes("battle-cry")) {
                 list.push({
-                    action: "Compendium.pf2e.actionspf2e.EeM0Czaep7G5ZSh5",
-                    source: "Compendium.pf2e.classfeatures.Item.qRLRrHf0kzaJ7xt0"
+                    action: "Compendium.pf2e.actionspf2e.Item.2u915NdUyQan6uKF",
+                    source: "Compendium.pf2e.feats-srd.Item.ePObIpaJDgDb9CQj"
+                })
+            }
+            // Defend
+            if (exploration.includes("defend")) {
+                list.push({
+                    action: "Compendium.pf2e.actionspf2e.Item.xjGwis0uaC2305pm",
+                    source: "Compendium.pf2e.actionspf2e.Item.cYtYKa1gDEl7y2N0"
+                })
+            }
+            //Oracle: Oracular Warning
+            if (slugs.includes("oracular-warning")) {
+                list.push({
+                    action: "Compendium.pf2e.feats-srd.Item.Gcliatty0MGYbTVV",
+                    source: "Compendium.pf2e.feats-srd.Item.Gcliatty0MGYbTVV"
                 })
             }
 
             break;
         case "startTurn":
-            // Thaumaturge: Tome (Adept)
-            if (actor?.flags?.pf2e?.rollOptions?.all["adept:tome"]) {
+            //Gunslinger: Ten Paces
+            if (slugs.includes("ten-paces") && config?.round === 1) {
                 list.push({
-                    action: "Compendium.pf2e.actionspf2e.1OagaWtBpVXExToo",
-                    source: "Compendium.pf2e.classfeatures.MyN1cQgE0HsLF20e"
+                    action: "Compendium.pf2e.actionspf2e.EeM0Czaep7G5ZSh5",
+                    source: "Compendium.pf2e.classfeatures.Item.qRLRrHf0kzaJ7xt0"
                 })
             }
             // Investigate Free Recall Knowledge Homebrew
@@ -59,6 +73,13 @@ function checkActorForReminders(actor, reason, config = {}) {
                 list.push({
                     action: "Compendium.pf2e.actionspf2e.Item.OdIUybJ3ddfL7wzj",
                     source: "Compendium.pf2e.feats-srd.Item.gBSPbQRXdagZTUwY"
+                })
+            }
+            // Thaumaturge: Tome (Adept)
+            if (actor?.flags?.pf2e?.rollOptions?.all["adept:tome"]) {
+                list.push({
+                    action: "Compendium.pf2e.actionspf2e.1OagaWtBpVXExToo",
+                    source: "Compendium.pf2e.classfeatures.MyN1cQgE0HsLF20e"
                 })
             }
 
