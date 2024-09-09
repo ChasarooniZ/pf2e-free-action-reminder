@@ -23,7 +23,7 @@ export async function combatStart(encounter, _current) {
     for (const combatant of encounter.turns) {
         const actor = combatant.token.actor;
         const reminders = checkActorForReminders(actor, "startCombat");
-        if (reminder.length) {
+        if (reminders.length) {
             reminderList.push({ actor, reminders });
         }
     }
