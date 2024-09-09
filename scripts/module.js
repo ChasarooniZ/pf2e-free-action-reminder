@@ -120,6 +120,7 @@ function createReminder(reminderList) {
                 ${list.join("")}
             </tbody>
             </table>`,
+            blind: true, // TODO add a setting for this
             whisper: getMessageList(reminder.actor)
         })
     }
@@ -128,13 +129,8 @@ function createReminder(reminderList) {
 function getMessageList(actor) {
     const ownership = actor.ownership;
     if (ownership?.default >= 3) {
-        return [...ChatMessage.getWhisperRecipients("players"), ...ChatMessage.getWhisperRecipients("GM")]
+        return ChatMessage.getWhisperRecipients("players")
     } else {
-        const actList = ChatMessage.getWhisperRecipients(actor.name);
-        if (actList.length === 0) {
-            return ChatMessage.getWhisperRecipients("GM");
-        } else {
-            return actList;
-        }
+        return ChatMessage.getWhisperRecipients(actor.name); 
     }
 }
