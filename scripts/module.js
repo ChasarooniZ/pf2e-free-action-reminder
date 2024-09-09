@@ -3,6 +3,7 @@ Hooks.once('init', async function () {
 });
 
 Hooks.once('ready', async function () {
+    if (!game.user.isGM) return
     Hooks.on("pf2e.startTurn", pf2eStartTurn);
     Hooks.on("combatStart", combatStart);
 });
@@ -90,7 +91,7 @@ function createReminder(reminderList) {
                 ${list.join("")}
             </tbody>
             </table>`,
-            whisper: getMessageList(actor)
+            whisper: getMessageList(reminder.actor)
         })
     }
 }
