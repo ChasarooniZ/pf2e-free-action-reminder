@@ -131,6 +131,10 @@ function getMessageList(actor) {
     if (ownership?.default >= 3) {
         return ChatMessage.getWhisperRecipients("players")
     } else {
-        return ChatMessage.getWhisperRecipients(actor.name); 
+        const actOwner = ChatMessage.getWhisperRecipients(actor.name);
+        if (actOwner.length) {
+            return actOwner;
+        }
+        return ChatMessage.getWhisperRecipients("GM"); 
     }
 }
