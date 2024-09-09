@@ -108,7 +108,7 @@ function createReminder(reminderList) {
         <td>@UUID[${r.source}]</td>
       </tr>`)
         ChatMessage.create({
-            content: `<h3>Action Reminder</h3>
+            content: `<h4>Action Reminder</h4>
             <table>
             <thead>
                 <tr>
@@ -131,6 +131,10 @@ function getMessageList(actor) {
         return [...ChatMessage.getWhisperRecipients("players"), ...ChatMessage.getWhisperRecipients("GM")]
     } else {
         const actList = ChatMessage.getWhisperRecipients(actor.name);
-        if (actList.length === 0) ChatMessage.getWhisperRecipients("GM");
+        if (actList.length === 0) {
+            return ChatMessage.getWhisperRecipients("GM");
+        } else {
+            return actList;
+        }
     }
 }
