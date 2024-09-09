@@ -12,7 +12,7 @@ Hooks.once('ready', async function () {
 export async function pf2eStartTurn(combatant, encounter, _userID) {
     const actor = combatant.token.actor;
     const reminders = checkActorForReminders(actor, "startTurn", { round: encounter.round })
-    if (reminder.length) {
+    if (reminders.length) {
         createReminder([{ actor, reminders }])
     }
 }
