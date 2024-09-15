@@ -9,7 +9,8 @@ Hooks.once('ready', async function () {
 });
 
 
-export async function pf2eStartTurn(combatant, encounter, _userID) {
+export async function pf2eStartTurn(combatant, encounter, userID) {
+    if (game.user.id !== userID) return;
     const actor = combatant.token.actor;
     const reminders = checkActorForReminders(actor, "startTurn", { round: encounter.round })
     if (reminders.length) {
@@ -103,6 +104,8 @@ function checkActorForReminders(actor, reason, config = {}) {
  */
 function createReminder(reminderList) {
     for (const reminder of reminderList) {
+        const userList = getMessageList(reminder.actor);
+        if (!userList.map(u => u.id).includes(game.user.id)) return;
         const list = reminder.reminders.map(r => `<tr>
         <td>@UUID[${r.action}]</td>
         <td>@UUID[${r.source}]</td>
@@ -135,6 +138,6 @@ function getMessageList(actor) {
         if (actOwner.length) {
             return actOwner;
         }
-        return ChatMessage.getWhisperRecipients("GM"); 
+        return ChatMessage.getWhisperRecipients("GM");
     }
 }
