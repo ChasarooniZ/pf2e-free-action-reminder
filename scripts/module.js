@@ -46,7 +46,7 @@ function checkActorForReminders(actor, reason, config = {}) {
                 })
             }
             // Defend
-            if (exploration.includes("defend")) {
+            if (exploration?.includes("defend")) {
                 list.push({
                     action: "Compendium.pf2e.actionspf2e.Item.xjGwis0uaC2305pm",
                     source: "Compendium.pf2e.actionspf2e.Item.cYtYKa1gDEl7y2N0"
@@ -70,7 +70,7 @@ function checkActorForReminders(actor, reason, config = {}) {
                 })
             }
             // Investigate Free Recall Knowledge Homebrew
-            if (exploration.includes("investigate") && config?.round === 1) {
+            if (exploration?.includes("investigate") && config?.round === 1) {
                 list.push({
                     action: "Compendium.pf2e.actionspf2e.Item.1OagaWtBpVXExToo",
                     source: "Compendium.pf2e.actionspf2e.Item.EwgTZBWsc8qKaViP"
